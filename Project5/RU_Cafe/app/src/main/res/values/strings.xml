@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">RU Cafe</string>
+
+<!--    MainActivity Buttons-->
+    <string name="donut">Donut</string>
+    <string name="coffee">Coffee</string>
+
+    <string name="first_button">Order Donuts</string>
+    <string name="second_button">Order Coffee</string>
+    <string name="third_button">Current Order (Cart)</string>
+    <string name="fourth_button">Store Order</string>
+
+    <string name="yourorder">Your Order</string>
+
+    <string-array name="Donut_Types">
+        <item>Yeast Donut</item>
+        <item>Cake Donut</item>
+        <item>Donut Holes</item>
+    </string-array>
+
+    <string-array name="Yeast">
+        <item>Apple Fritters</item>
+        <item>Jelly</item>
+        <item>Old Fashion</item>
+        <item>Cream</item>
+    </string-array>
+    <string-array name="Cake">
+        <item>Coconut</item>
+        <item>Cruller</item>
+        <item>Glazed</item>
+        <item>Chocolate </item>
+    </string-array>
+    <string-array name="Holes">
+        <item>Vanilla</item>
+        <item>Boston Cream</item>
+        <item>Powdered</item>
+        <item>Blueberry</item>
+    </string-array>
+
+    <string name="yeastprice">1.59</string>
+    <string name="cakeprice">1.79</string>
+    <string name="holeprice">0.39</string>
+
+    <string name="price">Price:</string>
+    <string name="dollar">$</string>
+    <string name="qty">Select QTY:</string>
+    <string name="temp">1</string>
+    <string name="addtocart">Add To Cart</string>
+    <string name="placeorder">Place Order</string>
+    <string name="delete">Delete</string>
+    <string name="addtocartsuccess">Add to Cart Successfully</string>
+
+    <string name="subtotal">Sub Total:</string>
+    <string name="tax">Sales Tax:</string>
+    <string name="totalprice">Total Price:</string>
+
+    <string name="key">Key</string>
+    <string name="note">*Note: Long press for canceling the order.</string>
+
+    <string name="noorder">No Order Found</string>
+
+    <string-array name="cofee_size">
+        <item>Short</item>
+        <item>Tall</item>
+        <item>Grande</item>
+        <item>Venti</item>
+    </string-array>
+
+    <string-array name="CofeeFlavour">
+        <item>cream</item>
+        <item>syrup</item>
+        <item>milk</item>
+        <item>caramel</item>
+        <item>whipped cream</item>
+    </string-array>
+
+
+</resources>
