@@ -32,28 +32,43 @@ public class Cart extends AppCompatActivity implements DeleteFromCart{
      * Creates rv Object of type RecyclerView.
      */
     RecyclerView rv;
-    
+
     /**
      * Creates adapaer Object of type Cart_Adapter.
      */
     Cart_Adapter adapter;
-    
+
     /**
      * Creates subtotal Object of type TextView.
      * Creates total Object of type TextView.
      * Creates tax Object of type TextView.
      */
     TextView subtotal,total,tax;
-    
+
     /**
      * Creates array Object of type String ArrayList.
      */
     ArrayList<String> array;
-    
+
     /**
      * Creates placeorder Object of type Button.
      */
     Button placeorder;
+
+    /**
+     * Creates NULL_VALUE Object of type String.
+     */
+    private final String NULL_VALUE = "null";
+
+    /**
+     * Creates a TAX Object of type double.
+     */
+    private final double TAX = 6.625;
+
+    /**
+     * Creates PERCENT Object of type double.
+     */
+    private final double PERCENT = 100.0;
 
     /**
      * onCreate is the initialization method.
@@ -98,13 +113,11 @@ public class Cart extends AppCompatActivity implements DeleteFromCart{
     @SuppressLint("DefaultLocale")
     public void PricingTotal(){
         double p = 0.00;
-        double salesTax = 6.625;
-        float percent = 100.0f;
         for (int i=0 ; i < MainActivity.arrayList.size() ; i++){
             p = p + Float.parseFloat(MainActivity.arrayList.get(i).getPrice());
         }
         subtotal.setText(String.format("%.2f", p));
-        double res = (p / percent) * salesTax;
+        double res = (p / PERCENT) * TAX;
         tax.setText(String.format("%.2f", res));
         double totally = p+res;
         total.setText(String.format("%.2f", totally));
@@ -131,8 +144,8 @@ public class Cart extends AppCompatActivity implements DeleteFromCart{
         for (int i=0; i< MainActivity.arrayList.size() ; i++){
             if (MainActivity.arrayList.get(i).getName().equals(getResources().getString(R.string.donut))){
                 Order = Order.concat(MainActivity.arrayList.get(i).getType()
-                    +" ("+MainActivity.arrayList.get(i).getQty()+") "
-                    +MainActivity.arrayList.get(i).getPrice()+"$\n");
+                        +" ("+MainActivity.arrayList.get(i).getQty()+") "
+                        +MainActivity.arrayList.get(i).getPrice()+"$\n");
             }
             else {
                 Order = Order.concat(MainActivity.arrayList.get(i).getName()
@@ -140,19 +153,19 @@ public class Cart extends AppCompatActivity implements DeleteFromCart{
                         +MainActivity.arrayList.get(i).getPrice()
                         +"$ ["+MainActivity.arrayList.get(i).getSize()+"]"
                         +"["+MainActivity.arrayList.get(i).getFlavour()+"]"
-                +"\n");
+                        +"\n");
             }
         }
 
         Order = Order.concat("Order Total: "+total.getText().toString()
-        +"$ (subtotal: "+subtotal.getText().toString()+"$, tax: "+tax.getText().toString()+"$)\n\n");
+                +"$ (subtotal: "+subtotal.getText().toString()+"$, tax: "+tax.getText().toString()+"$)\n\n");
         Order = "Order Number: "+System.currentTimeMillis()+"\n"+Order;
 
         // get previous list
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Gson gson1 = new Gson();
-        String json1 = prefs.getString(key, "null");
-        if (!json1.equals("null")) {
+        String json1 = prefs.getString(key, NULL_VALUE);
+        if (!json1.equals(NULL_VALUE)) {
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
             array = gson1.fromJson(json1, type);
         }

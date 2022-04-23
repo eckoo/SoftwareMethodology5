@@ -1,5 +1,9 @@
 package com.application.rucafe;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,11 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.application.rucafe.Adapter.Coffee_Flavour_Adapter;
+import com.application.rucafe.Adapter.Donut_Flavour_Adapter;
 import com.application.rucafe.Model.OrderModel;
 
 /**
@@ -30,32 +31,70 @@ public class Coffees extends AppCompatActivity implements DeleteFromCart{
      * Creates Add Object of type ImageButton.
      */
     ImageButton Minus,Add;
-    
+
     /**
      * Creates counter Object of type TextView.
      * Creates price Object of type TextView.
      */
     TextView counter,price;
-    
+
     /**
      * Creates selecttype Object of type Spinner.
      */
     Spinner selecttype;
-    
+
     /**
      * Creates AddtoCart Object of type Button.
      */
     Button AddtoCart;
-    
+
     /**
      * Creates rv Object of type RecyclerView.
      */
     RecyclerView rv;
-    
+
     /**
      * Creates adapter Object of type Coffee_Flavour_Adapater.
      */
     Coffee_Flavour_Adapter adapter;
+
+    /**
+     * Basic price for Coffee
+     */
+    private final double BASIC_PRICE = 1.69;
+
+    /**
+     * Price for large size
+     */
+    private final double EXTRA_PRICE = 0.40;
+
+    /**
+     * Flavor price percent
+     */
+
+    private final double FLAVOR_PRICE = 0.30;
+
+    /**
+     * Valid counter 1
+     */
+    private final String COUNTER_1 = "1";
+
+    /**
+     * Coffee Size: Short
+     */
+    private final String TYPE_SHORT = "Short";
+    /**
+     * Coffee Size: Tall
+     */
+    private final String TYPE_TALL = "Tall";
+    /**
+     * Coffee Size: Grande
+     */
+    private final String TYPE_GRANDE = "Grande";
+    /**
+     * Coffee Size: Venti
+     */
+    private final String TYPE_VENTI = "Venti";
 
     /**
      * onCreate is the initialization method.
@@ -114,7 +153,7 @@ public class Coffees extends AppCompatActivity implements DeleteFromCart{
             @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View v) {
-                if (!counter.getText().toString().equals("1")) {
+                if (!counter.getText().toString().equals(COUNTER_1)) {
                     String add=counter.getText().toString();
                     int temp=Integer.parseInt(add);
                     temp--;
@@ -189,25 +228,22 @@ public class Coffees extends AppCompatActivity implements DeleteFromCart{
 
         double typeprice = 0.00;
         double flavourprice = 0.00;
-        double baseprice = 1.69;
-        double priceincrease = 0.40;
-        double num = 0.30;
 
-        if (type.equals("Short")){
-            typeprice = baseprice;
+        if (type.equals(TYPE_SHORT)){
+            typeprice = BASIC_PRICE;
         }
-        if (type.equals("Tall")){
-            typeprice = baseprice+priceincrease;
+        if (type.equals(TYPE_TALL)){
+            typeprice = BASIC_PRICE+EXTRA_PRICE;
         }
-        if (type.equals("Grande")){
-            typeprice = baseprice+priceincrease+priceincrease;
+        if (type.equals(TYPE_GRANDE)){
+            typeprice = BASIC_PRICE+EXTRA_PRICE+EXTRA_PRICE;
         }
-        if (type.equals("Venti")){
-            typeprice = baseprice+priceincrease+priceincrease+priceincrease;
+        if (type.equals(TYPE_VENTI)){
+            typeprice = BASIC_PRICE+EXTRA_PRICE+EXTRA_PRICE+EXTRA_PRICE;
         }
 
         if (Coffee_Flavour_Adapter.selectedflavour.size()>0){
-            flavourprice = Coffee_Flavour_Adapter.selectedflavour.size()*num;
+            flavourprice = Coffee_Flavour_Adapter.selectedflavour.size()*FLAVOR_PRICE;
         }
 
         double subtotal = typeprice+flavourprice;
